@@ -24,5 +24,8 @@
     "server.js",
     "jsdoc.json",
     "README.md"
-  ]
+  ],
+  "dependencies": {
+    "templeton": "~2.x.x"
+  }
 }

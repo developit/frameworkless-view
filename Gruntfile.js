@@ -13,16 +13,17 @@ module.exports = function(grunt) {
 
 		copy : {
 			main : {
-				expand : true,
-				cwd : 'src/',
-				src : '**',
-				dest : 'dist/'
+				files : [
+					{ cwd:'src/', src:'**', dest:'dist/', expand:true },
+					{ cwd:'src/', src:'**', dest:'demo/js/lib/', expand:true }
+				]
 			},
 
-			demo : {
+			bower : {
 				expand : true,
-				cwd : 'src/',
-				src : '**',
+				flatten : true,
+				cwd : 'bower_components',
+				src : ['*/*.js'],
 				dest : 'demo/js/lib/'
 			}
 		},
@@ -76,9 +77,9 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', [
 		'jshint:main',
+		'copy:bower',
 		'copy:main',
 		'uglify:main',
-		'copy:demo',
 		'jsdoc:main'
 	]);
 
