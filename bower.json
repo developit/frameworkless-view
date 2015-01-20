@@ -1,8 +1,9 @@
 {
   "name": "frameworkless-view",
-  "version": "0.5.5",
+  "version": "1.0.0",
   "authors": [
-    "Synacor"
+    "James Simpson <jsimpson@synacor.com>",
+    "Jason Miller <jasonmiller@synacor.com>"
   ],
   "description": "A View-Presenter implementation for Frameworkless.",
   "main": "dist/view.js",
