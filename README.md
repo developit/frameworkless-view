@@ -19,7 +19,7 @@ Features
 --------
 
 - Built-in declarative event delegation
-- Uses Handlebars to render HTML view templates
+- Uses [Templeton](http://github.com/developit/templeton) to render HTML view templates
 
 
 ---
@@ -77,7 +77,7 @@ Basic Usage
 ```JavaScript
 require(['view'], function(view) {
 
-	// We're using Handlebars templates:
+	// We're using Templeton/Handlebars templates:
 	var template = '<h1>{{{title}}}</h1> <button id="hi">Click Me</button>';
 
 	// Instantiate a view:

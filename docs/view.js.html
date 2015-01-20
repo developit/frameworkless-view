@@ -31,7 +31,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**	Provides a Class and mixin that implement simple HTML views using Handlebars as a template engine.
+            <pre class="prettyprint source linenums"><code>/**	Provides a Class and mixin that implement simple HTML views using [Templeton](https://github.com/developit/templeton) as a template engine.
  *	If called directly as a function, &lt;code>view()&lt;/code> is an alias of {@link module:view.View View}.
  *	@module view
  *
@@ -40,7 +40,7 @@
  *
  *		var view = require('view');
  *
- *		// Uses Handlebars templates:
+ *		// Uses Templeton/Handlebars templates:
  *		var template = '&lt;h1>{{{title}}}&lt;/h1> &lt;button id="hi">Click Me&lt;/button>';
  *
  *		// Instantiate a view:
@@ -133,12 +133,12 @@
  */
 (function(g, factory) {
 	if (typeof define==='function' &amp;&amp; define.amd) {
-		define(['util', 'events', 'handlebars'], factory);
+		define(['util', 'events', 'templeton'], factory);
 	}
 	else {
-		g.view = factory(g.util, g.EventEmitter, g.handlebars);
+		g.view = factory(g.util, g.EventEmitter, g.templeton);
 	}
-}(this, function(_, events, handlebars) {
+}(this, function(_, events, templeton) {
 	var EventEmitter = events.EventEmitter || events,
 		proto = (window.Element || document.createElement('div').constructor).prototype,
 		matches;
@@ -231,14 +231,13 @@
 		if (typeof tpl==='object') {
 			_.extend(this, tpl);
 			if (tpl.events) {
-				this.hookEvents(tpl.events, tpl);
+				this.hookEvents(this.events, this);
 			}
 			name = tpl.name;
 			tpl = tpl.template || tpl.tpl;
 		}
 
 		this.rawView = tpl;
-		this.renderTemplate = handlebars.compile(this.rawView);
 
 		if (name) {
 			this.base.setAttribute('id', name + '-base');
@@ -260,10 +259,14 @@
 		 *	@param {Object} data	Template data fields to inject.
 		 */
 		render : function(data) {
-			if (!this.renderTemplate || !this.base) return false;
+			if (!this.rawView || !this.base) return false;
 			this.templateData = data;
 			this.base.innerHTML = (data &amp;&amp; this.renderTemplate(data)) || this.rawView;
 			return this;
+		},
+
+		renderTemplate : function(data) {
+			return templeton.template(this.rawView, data);
 		},
 
 		/** Alias of {@link View#render view.render()} */
@@ -285,7 +288,7 @@
 					selector = sep.slice(1).join(' ');
 					fn = events[x];
 					if (ctx &amp;&amp; typeof fn==='string') {
-						fn = ctx[fn].bind(fn);
+						fn = ctx[fn].bind(ctx);
 					}
 					if (!delegateFrom(this.base, evt, selector, fn)) {
 						throw new Error('Invalid event entry "'+x+'".');
@@ -372,11 +375,11 @@
 	<a class="menuLink">Menu</a>
 
 	<nav>
-		<h2><a href="index.html">Overview</a></h2><div class="nav-modules"><h3>Modules</h3><ul><li title="module:view"><a href="module-view.html">view</a></li><div class="navinner nav-methods"><h4>Methods</h4><ul><li title="module:view.view"><a href="module-view.html#view">view</a></li></ul></div></ul><div class="nav-classes"><h3>Classes</h3><ul><li title="module:view.View"><a href="module-view.View.html">View</a></li><div class="navinner nav-methods"><h4>Methods</h4><ul><li title="module:view.View#$"><a href="module-view.View.html#$">$</a></li><li title="module:view.View#$$"><a href="module-view.View.html#$$">$$</a></li><li title="module:view.View#find"><a href="module-view.View.html#find">find</a></li><li title="module:view.View#findOne"><a href="module-view.View.html#findOne">findOne</a></li><li title="module:view.View#hookEvents"><a href="module-view.View.html#hookEvents">hookEvents</a></li><li title="module:view.View#insertAfter"><a href="module-view.View.html#insertAfter">insertAfter</a></li><li title="module:view.View#insertInto"><a href="module-view.View.html#insertInto">insertInto</a></li><li title="module:view.View#render"><a href="module-view.View.html#render">render</a></li><li title="module:view.View#template"><a href="module-view.View.html#template">template</a></li></ul></div></ul>
+		<h2><a href="index.html">Overview</a></h2><div class="nav-modules"><h3>Modules</h3><ul><li title="module:view"><a href="module-view.html">view</a></li><div class="navinner nav-methods"><h4>Methods</h4><ul><li title="module:view.view"><a href="module-view.html#.view">view</a></li></ul></div></ul><div class="nav-classes"><h3>Classes</h3><ul><li title="module:view.View"><a href="module-view.View.html">View</a></li><div class="navinner nav-methods"><h4>Methods</h4><ul><li title="module:view.View#$"><a href="module-view.View.html#$">$</a></li><li title="module:view.View#$$"><a href="module-view.View.html#$$">$$</a></li><li title="module:view.View#find"><a href="module-view.View.html#find">find</a></li><li title="module:view.View#findOne"><a href="module-view.View.html#findOne">findOne</a></li><li title="module:view.View#hookEvents"><a href="module-view.View.html#hookEvents">hookEvents</a></li><li title="module:view.View#insertAfter"><a href="module-view.View.html#insertAfter">insertAfter</a></li><li title="module:view.View#insertInto"><a href="module-view.View.html#insertInto">insertInto</a></li><li title="module:view.View#render"><a href="module-view.View.html#render">render</a></li><li title="module:view.View#template"><a href="module-view.View.html#template">template</a></li></ul></div></ul>
 	</nav>
 
 	<footer>
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Fri Jan 16 2015 17:35:14 GMT-0500 (EST)
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha13</a> on Tue Jan 20 2015 12:31:50 GMT-0500 (EST)
 	</footer>
 
 	<script src="scripts/prettify/prettify.js"></script>

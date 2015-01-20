@@ -1,4 +1,4 @@
-/**	Provides a Class and mixin that implement simple HTML views using Handlebars as a template engine.
+/**	Provides a Class and mixin that implement simple HTML views using [Templeton](https://github.com/developit/templeton) as a template engine.
  *	If called directly as a function, <code>view()</code> is an alias of {@link module:view.View View}.
  *	@module view
  *
@@ -7,7 +7,7 @@
  *
  *		var view = require('view');
  *
- *		// Uses Handlebars templates:
+ *		// Uses Templeton/Handlebars templates:
  *		var template = '<h1>{{{title}}}</h1> <button id="hi">Click Me</button>';
  *
  *		// Instantiate a view:
@@ -100,12 +100,12 @@
  */
 (function(g, factory) {
 	if (typeof define==='function' && define.amd) {
-		define(['util', 'events', 'handlebars'], factory);
+		define(['util', 'events', 'templeton'], factory);
 	}
 	else {
-		g.view = factory(g.util, g.EventEmitter, g.handlebars);
+		g.view = factory(g.util, g.EventEmitter, g.templeton);
 	}
-}(this, function(_, events, handlebars) {
+}(this, function(_, events, templeton) {
 	var EventEmitter = events.EventEmitter || events,
 		proto = (window.Element || document.createElement('div').constructor).prototype,
 		matches;
@@ -205,7 +205,6 @@
 		}
 
 		this.rawView = tpl;
-		this.renderTemplate = handlebars.compile(this.rawView);
 
 		if (name) {
 			this.base.setAttribute('id', name + '-base');
@@ -227,10 +226,14 @@
 		 *	@param {Object} data	Template data fields to inject.
 		 */
 		render : function(data) {
-			if (!this.renderTemplate || !this.base) return false;
+			if (!this.rawView || !this.base) return false;
 			this.templateData = data;
 			this.base.innerHTML = (data && this.renderTemplate(data)) || this.rawView;
 			return this;
+		},
+
+		renderTemplate : function(data) {
+			return templeton.template(this.rawView, data);
 		},
 
 		/** Alias of {@link View#render view.render()} */
