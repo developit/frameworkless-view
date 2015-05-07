@@ -193,6 +193,8 @@
 	function View(tpl, name) {
 		if (!(this instanceof View)) return new View(tpl, name);
 
+		EventEmitter.call(this);
+
 		this.base = document.createElement('div');
 
 		if (typeof tpl==='object') {
@@ -204,17 +206,21 @@
 			tpl = tpl.template || tpl.tpl;
 		}
 
-		this.rawView = tpl;
+		if (tpl) {
+			this.rawView = tpl;
+		}
 
 		if (name) {
 			this.base.setAttribute('id', name + '-base');
 		}
 		this.base.className = 'view-base';
-		this.base.innerHTML = this.rawView;
+		this.render(this.data || {});
 
-		this.name = name;
+		if (name) {
+			this.name = name;
+		}
 		if (this.name) {
-			this.base.setAttribute('data-view', name);
+			this.base.setAttribute('data-view', this.name);
 		}
 	}
 
@@ -226,9 +232,11 @@
 		 *	@param {Object} data	Template data fields to inject.
 		 */
 		render : function(data) {
-			if (!this.rawView || !this.base) return false;
+			var tpl = typeof this.template==='string' ? this.template : this.rawView;
+			data = data || this.data;
+			if (!tpl || !this.base) return false;
 			this.templateData = data;
-			this.base.innerHTML = (data && this.renderTemplate(data)) || this.rawView;
+			this.base.innerHTML = (data && this.renderTemplate(data)) || tpl;
 			return this;
 		},
 
