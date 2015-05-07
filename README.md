@@ -1,13 +1,13 @@
-Frameworkless View [![NPM Version](http://img.shields.io/npm/v/frameworkless-view.svg?style=flat)](https://www.npmjs.org/package/frameworkless-view) [![Bower Version](http://img.shields.io/bower/v/frameworkless-view.svg?style=flat)](http://bower.io/search/?q=frameworkless-view)
+frameworkless-view-templeton [![NPM Version](http://img.shields.io/npm/v/frameworkless-view-templeton.svg?style=flat)](https://www.npmjs.org/package/frameworkless-view-templeton) [![Bower Version](http://img.shields.io/bower/v/frameworkless-view-templeton.svg?style=flat)](http://bower.io/search/?q=frameworkless-view-templeton)
 =============
 
-A simple view-presenter module for [frameworkless](http://github.com/synacorinc/frameworkless).
+A simple view-presenter module for [frameworkless](https://github.com/synacorinc/frameworkless), using [Templeton](https://github.com/developit/templeton).
 
-**[View Demo](http://frameworkless-view.herokuapp.com/demo/)**
+**[View Demo](http://frameworkless-view-templeton.herokuapp.com/demo/)**
 
-[![Build Status](https://img.shields.io/travis/synacorinc/frameworkless-view.svg?style=flat&branch=master)](https://travis-ci.org/synacorinc/frameworkless-view)
-[![Dependency Status](http://img.shields.io/david/synacorinc/frameworkless-view.svg?style=flat)](https://david-dm.org/synacorinc/frameworkless-view)
-[![devDependency Status](http://img.shields.io/david/dev/synacorinc/frameworkless-view.svg?style=flat)](https://david-dm.org/synacorinc/frameworkless-view#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/developit/frameworkless-view-templeton.svg?style=flat&branch=master)](https://travis-ci.org/developit/frameworkless-view-templeton)
+[![Dependency Status](http://img.shields.io/david/developit/frameworkless-view-templeton.svg?style=flat)](https://david-dm.org/developit/frameworkless-view-templeton)
+[![devDependency Status](http://img.shields.io/david/dev/developit/frameworkless-view-templeton.svg?style=flat)](https://david-dm.org/developit/frameworkless-view-templeton#info=devDependencies)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -34,17 +34,17 @@ Use a Package Manager
 **bower:**
 
 ```bash
-bower install frameworkless-view
+bower install frameworkless-view-templeton
 # copy the stuff you want
-cp bower_components/frameworkless-view/dist/view.js src/lib
+cp bower_components/frameworkless-view-templeton/dist/view.js src/lib
 ```
 
 **npm:**
 
 ```bash
-npm install frameworkless-view
+npm install frameworkless-view-templeton
 # copy the stuff you want
-cp node_modules/frameworkless-view/dist/view.js src/lib
+cp node_modules/frameworkless-view-templeton/dist/view.js src/lib
 ```
 
 
@@ -54,8 +54,8 @@ Use the Source
 Get started right away, so you can disassemble and play around at your lesure.
 
 ```bash
-# Clone frameworkless-view
-git clone git@github.com:synacorinc/frameworkless-view.git
+# Clone frameworkless-view-templeton
+git clone git@github.com:developit/frameworkless-view-templeton.git
 
 # Install development dependencies
 npm install

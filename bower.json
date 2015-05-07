@@ -1,11 +1,11 @@
 {
-  "name": "frameworkless-view",
-  "version": "1.0.0",
+  "name": "frameworkless-view-templeton",
+  "version": "1.1.0",
   "authors": [
     "James Simpson <jsimpson@synacor.com>",
     "Jason Miller <jasonmiller@synacor.com>"
   ],
-  "description": "A View-Presenter implementation for Frameworkless.",
+  "description": "A View-Presenter implementation for Frameworkless, using templeton.",
   "main": "dist/view.js",
   "keywords": [
     "frameworkless",

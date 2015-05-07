@@ -1,7 +1,7 @@
 {
-	"name": "frameworkless-view",
-	"description": "A View-Presenter implementation for Frameworkless.",
-	"repository": "https://github.com/synacorinc/frameworkless-view",
+	"name": "frameworkless-view-templeton",
+	"description": "A View-Presenter implementation for Frameworkless, using Templeton.",
+	"repository": "https://github.com/developit/frameworkless-view-templeton",
 	"keywords": ["frameworkless", "view", "mvc"],
 	"env": {
 		"NPM_CONFIG_PRODUCTION": "false"

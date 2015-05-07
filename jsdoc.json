@@ -1,7 +1,7 @@
 {
 	"opts" : {
 		"pagetitle" : "Frameworkless View",
-		"github" : "synacorinc/frameworkless-view",
+		"github" : "developit/frameworkless-view-templeton",
 		"template" : "./jsdoc-template",
 		"indexName" : "Overview",
 		"mainpagetitle" : "Overview"

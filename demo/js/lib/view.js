@@ -233,7 +233,8 @@
 		},
 
 		renderTemplate : function(data) {
-			return templeton.template(this.rawView, data);
+			var tpl = typeof this.template==='string' ? this.template : this.rawView;
+			return templeton.template(tpl, data);
 		},
 
 		/** Alias of {@link View#render view.render()} */
