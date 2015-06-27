@@ -181,7 +181,7 @@
 					}
 				}
 			}
-		} while( (parent=parent.parentNode)!==this.parentNode );
+		} while( (parent=parent.parentNode) && parent!==this.parentNode );
 	}
 
 	/**	The View class.
