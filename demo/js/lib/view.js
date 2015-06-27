@@ -199,11 +199,12 @@
 
 		if (typeof tpl==='object') {
 			_.extend(this, tpl);
-			if (tpl.events) {
-				this.hookEvents(this.events, this);
-			}
 			name = tpl.name;
 			tpl = tpl.template || tpl.tpl;
+		}
+
+		if (this.events) {
+			this.hookEvents(this.events, this);
 		}
 
 		if (tpl) {
@@ -255,8 +256,8 @@
 		 */
 		hookEvents : function(events, ctx) {
 			var sep, evt, fn, selector, c, x;
-			if (!this.base) return false;
-			this.events = events;
+			if (!this.base || this._eventsHooked) return false;
+			this.events = this._eventsHooked = events;
 			for (x in events) {
 				if (events.hasOwnProperty(x)) {
 					sep = x.split(' ');
