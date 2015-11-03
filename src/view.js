@@ -143,7 +143,7 @@
 		if (!node._eventTypes) node._eventTypes = {};
 
 		if (!node._eventTypes.hasOwnProperty(type)) {
-			node.addEventListener(type, handleDelegate);
+			node.addEventListener(type, handleDelegate, true);
 			node._eventTypes[type] = true;
 		}
 
