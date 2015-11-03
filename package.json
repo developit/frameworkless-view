@@ -1,6 +1,6 @@
 {
   "name": "frameworkless-view-templeton",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A View-Presenter implementation for Frameworkless, using templeton.",
   "main": "dist/view.js",
   "scripts": {
